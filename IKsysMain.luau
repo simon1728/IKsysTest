@@ -1,4 +1,6 @@
+--[[ 6/24/2025 
 
+]]
 
 -- armIK
 local function SolveArmIK(originCFF, targetPos, l1, l2, C1Off, Side)
@@ -73,7 +75,7 @@ local function SolveLesIK(o, t, l0, l1)
     end
 end
 
--- 월드 CFrame을 Motor6D의 C0(Part0 기준) Object Space CFrame으로 반환
+-- World CFrame to Motor6D C0(Part0 st) Object Space CFrame return
 local function WorldCFrameToC0ObjectSpace(motor6DJoint, worldCFrame)
     local part0 = motor6DJoint.Part0
     local c1Store = motor6DJoint.C1
@@ -82,11 +84,11 @@ local function WorldCFrameToC0ObjectSpace(motor6DJoint, worldCFrame)
     return relativeToPart0
 end
 
--- R6IK 클래스 (r6)
+-- R6IK Class (r6)
 local R6IK = {}
 R6IK.__index = R6IK
 
--- R6IK 인스턴스
+-- R6IK instance
 function R6IK.New(Character)
     local self = {}
     self.Torso = Character.Torso
@@ -150,7 +152,7 @@ function R6IK.New(Character)
     return setmetatable(self, R6IK)
 end
 
--- 팔 IK 적용 메서드
+-- arm IK methods
 function R6IK:ArmIK(Side, Position)
     if Side == "Left" then
         local OriginCF = self.Torso.CFrame * self.C0s["Left Shoulder"]
@@ -177,7 +179,7 @@ function R6IK:ArmIK(Side, Position)
     end
 end
 
--- 다리 IK 적용 메서드
+-- leg IK methods
 function R6IK:LegIK(Side, Position)
     if Side == "Left" then
         local OriginCF = self.Torso.CFrame * self.C0s["Left Hip"]
